@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, type KeyboardEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Mic, MicOff } from "lucide-react";
+import { Send, Mic, Square } from "lucide-react";
 
 interface ChatInputProps {
   onSendMessage: (text: string) => void;
@@ -79,13 +79,13 @@ export default function ChatInput({
 
             <div className="flex-1" />
 
-            {/* Stop button */}
+            {/* Stop button — grande e visibile */}
             <button
               onClick={onStopRecording}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500/20 text-red-400 transition-colors hover:bg-red-500/30"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-500 text-white shadow-lg shadow-red-500/25 transition-colors hover:bg-red-600"
               aria-label="Ferma registrazione"
             >
-              <MicOff className="h-5 w-5" />
+              <Square className="h-5 w-5" />
             </button>
           </motion.div>
         ) : (

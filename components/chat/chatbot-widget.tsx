@@ -163,7 +163,7 @@ export default function ChatbotWidget() {
               }}
               className="absolute inset-0 top-0"
             >
-              <div className="h-[520px]">
+              <div className="h-[520px] overflow-hidden rounded-2xl">
                 <ChatPanel
                   messages={chat.messages}
                   phase={chat.phase}
@@ -204,7 +204,7 @@ export default function ChatbotWidget() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="w-full lg:w-[45%]"
         >
-          <div className="h-[520px] lg:h-[580px]">
+          <div className="h-[520px] lg:h-[580px] overflow-hidden rounded-2xl">
             <ChatPanel
               messages={chat.messages}
               phase={chat.phase}
@@ -230,7 +230,7 @@ export default function ChatbotWidget() {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
           className="w-full lg:w-[55%]"
         >
-          <div className="h-[400px] lg:h-[580px]">
+          <div className="h-[400px] lg:h-[580px] overflow-hidden rounded-2xl">
             <PreviewPanel
               phase={chat.phase}
               previewToken={chat.previewToken}

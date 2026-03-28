@@ -123,9 +123,9 @@ export default function ChatPanel({
   const showInput = phase === "collecting" || phase === "analyzing";
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a1929]">
+    <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a1929]">
       {/* ─── Messages Area ─── */}
-      <div className="flex-1 overflow-y-auto px-4 py-4">
+      <div className="flex-1 min-h-0 overflow-y-auto px-4 py-4">
         <div className="flex flex-col gap-3">
           {/* GDPR Consent */}
           <AnimatePresence>
