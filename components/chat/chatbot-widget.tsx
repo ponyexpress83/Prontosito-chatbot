@@ -187,7 +187,7 @@ export default function ChatbotWidget() {
     );
   }
 
-  /* ─── Render: Split — Two columns ─── */
+  /* ─── Render: Split — Two columns, fixed height ─── */
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -195,48 +195,45 @@ export default function ChatbotWidget() {
       transition={{ duration: 0.5 }}
       className="mx-auto w-full max-w-6xl px-4"
     >
-      <div className="flex flex-col gap-4 lg:flex-row lg:gap-6">
-        {/* Chat Panel (left) */}
+      <div className="flex flex-col gap-4 lg:flex-row lg:gap-6 lg:items-start">
+        {/* Chat Panel (left) — fixed height, never expands */}
         <motion.div
-          layout
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="w-full lg:w-[45%]"
+          className="w-full lg:w-[45%] overflow-hidden rounded-2xl"
+          style={{ height: 520 }}
         >
-          <div className="h-[520px] lg:h-[580px] overflow-hidden rounded-2xl">
-            <ChatPanel
-              messages={chat.messages}
-              phase={chat.phase}
-              isLoading={chat.isLoading}
-              analyzingUrl={chat.analyzingUrl}
-              analysisStatus={chat.analysisStatus}
-              analysisResult={chat.analysisResult}
-              onSendMessage={(text) => chat.sendMessage(text)}
-              onAcceptGdpr={chat.acceptGdpr}
-              isRecording={isRecording}
-              recordingDuration={recordingDuration}
-              onStartRecording={startRecording}
-              onStopRecording={handleStopRecording}
-              onSendVoice={handleSendVoice}
-            />
-          </div>
+          <ChatPanel
+            messages={chat.messages}
+            phase={chat.phase}
+            isLoading={chat.isLoading}
+            analyzingUrl={chat.analyzingUrl}
+            analysisStatus={chat.analysisStatus}
+            analysisResult={chat.analysisResult}
+            onSendMessage={(text) => chat.sendMessage(text)}
+            onAcceptGdpr={chat.acceptGdpr}
+            isRecording={isRecording}
+            recordingDuration={recordingDuration}
+            onStartRecording={startRecording}
+            onStopRecording={handleStopRecording}
+            onSendVoice={handleSendVoice}
+          />
         </motion.div>
 
-        {/* Preview Panel (right) */}
+        {/* Preview Panel (right) — fixed height, never expands */}
         <motion.div
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
-          className="w-full lg:w-[55%]"
+          className="w-full lg:w-[55%] overflow-hidden rounded-2xl"
+          style={{ height: 520 }}
         >
-          <div className="h-[400px] lg:h-[580px] overflow-hidden rounded-2xl">
-            <PreviewPanel
-              phase={chat.phase}
-              previewToken={chat.previewToken}
-              businessName={chat.businessName || "Il tuo sito"}
-            />
-          </div>
+          <PreviewPanel
+            phase={chat.phase}
+            previewToken={chat.previewToken}
+            businessName={chat.businessName || "Il tuo sito"}
+          />
         </motion.div>
       </div>
     </motion.div>

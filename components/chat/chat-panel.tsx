@@ -113,10 +113,12 @@ export default function ChatPanel({
   onSendVoice,
 }: ChatPanelProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
+  // Scroll INSIDE the messages container, not the whole page
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   }, [messages, phase, analyzingUrl]);
 
@@ -125,7 +127,7 @@ export default function ChatPanel({
   return (
     <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a1929]">
       {/* ─── Messages Area ─── */}
-      <div className="flex-1 min-h-0 overflow-y-auto px-4 py-4">
+      <div ref={messagesContainerRef} className="flex-1 min-h-0 overflow-y-auto px-4 py-4">
         <div className="flex flex-col gap-3">
           {/* GDPR Consent */}
           <AnimatePresence>
@@ -179,8 +181,7 @@ export default function ChatPanel({
             )}
           </AnimatePresence>
 
-          {/* Scroll anchor */}
-          <div ref={scrollRef} />
+          {/* Scroll anchor (kept for reference) */}
         </div>
       </div>
 
