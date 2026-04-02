@@ -187,22 +187,33 @@ export default function ChatbotWidget() {
     );
   }
 
-  /* ─── Render: Split — Two columns, fixed height ─── */
+  /* ─── Render: Split — Two columns, bulletproof fixed height ─── */
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="mx-auto w-full max-w-6xl px-4"
+      style={{
+        height: 540,
+        maxHeight: 540,
+        overflow: "hidden",
+        flexGrow: 0,
+        flexShrink: 0,
+        alignSelf: "center",
+      }}
     >
-      <div className="flex flex-col gap-4 lg:flex-row lg:gap-6 lg:items-start">
+      <div
+        className="flex flex-col gap-4 lg:flex-row lg:gap-6"
+        style={{ height: 520, maxHeight: 520, alignItems: "flex-start" }}
+      >
         {/* Chat Panel (left) — fixed height, never expands */}
         <motion.div
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="w-full lg:w-[45%] overflow-hidden rounded-2xl"
-          style={{ height: 520 }}
+          style={{ height: 520, maxHeight: 520, minHeight: 520, flexGrow: 0, flexShrink: 0 }}
         >
           <ChatPanel
             messages={chat.messages}
@@ -227,7 +238,7 @@ export default function ChatbotWidget() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
           className="w-full lg:w-[55%] overflow-hidden rounded-2xl"
-          style={{ height: 520 }}
+          style={{ height: 520, maxHeight: 520, minHeight: 520, flexGrow: 0, flexShrink: 0 }}
         >
           <PreviewPanel
             phase={chat.phase}
